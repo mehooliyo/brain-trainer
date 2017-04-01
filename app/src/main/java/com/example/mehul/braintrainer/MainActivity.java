@@ -14,10 +14,15 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    int correct = 0;
+    int attempts = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        updateScoreView(correct, attempts);
 
         TextView exprView = (TextView) findViewById(R.id.exprView);
         Expression expr = getRandomExpression();
@@ -39,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
         };
 
         timer.start();
+    }
+
+    private void updateScoreView(int correct, int attempts){
+        TextView scoreView = (TextView) findViewById(R.id.scoreView);
+        scoreView.setText(correct + "/" + attempts);
     }
 
     public int randInt(int min, int max) {
