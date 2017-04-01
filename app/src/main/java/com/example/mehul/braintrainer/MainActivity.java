@@ -3,8 +3,12 @@ package com.example.mehul.braintrainer;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -47,5 +51,20 @@ public class MainActivity extends AppCompatActivity {
         String operator = "+";
 
         return new Expression(leftOperand, rightOperand, operator);
+    }
+
+    private List<TextView> getSolutionViews(){
+        List<TextView> viewList = new ArrayList<>();
+
+        TableLayout solTable = (TableLayout) findViewById(R.id.solTable);
+        for(int i=0; i < solTable.getChildCount(); i++) {
+            TableRow tableRow = (TableRow) solTable.getChildAt(i);
+            for (int j = 0; j < tableRow.getChildCount(); j++) {
+                TextView solView = (TextView) tableRow.getChildAt(j);
+                viewList.add(solView);
+            }
+        }
+
+        return viewList;
     }
 }
