@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         updateState();
     }
 
+    //Updates UI based on attempts and correct answers, generates a new expression, and restarts
     private void updateState(){
         //update score with current attempts
         scoreView.setText(correct + "/" + attempts);
@@ -65,10 +66,12 @@ public class MainActivity extends AppCompatActivity {
 
         //generate new random solutions
         populateSolutionViews(expr, getSolutionViews());
-        
+
         timer.start();
     }
 
+    //Handler for solution attempt. Determines if answer was correct, updates the view and
+    //makes call to update the state
     public void onSolutionAttempt(View v){
         TextView view = (TextView) v;
         int clickedAnswer = Integer.parseInt(view.getText().toString());
@@ -87,17 +90,9 @@ public class MainActivity extends AppCompatActivity {
         updateState();
     }
 
-    private int randInt(int min, int max) {
-        Random rand = new Random();
-        int randomNum = rand.nextInt((max - min) + 1) + min;
 
-        return randomNum;
-    }
 
-    private boolean getRandomBoolean() {
-        return Math.random() < 0.5;
-    }
-
+    //Get an expression where the operands are random ints
     private Expression getRandomExpression(){
         int leftOperand = randInt(0,100);
         int rightOperand = randInt(0, 100);
@@ -106,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         return new Expression(leftOperand, rightOperand, operator);
     }
 
+    //Gets a list of the text views under the table layout
     private List<TextView> getSolutionViews(){
         List<TextView> viewList = new ArrayList<>();
 
@@ -121,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
         return viewList;
     }
 
+    //Generates a list of random values mixed with the actual value from mainExpr
+    //and updates the solution views in the UI.
     private void populateSolutionViews(Expression mainExpr, List<TextView> solViews){
         List<Integer> values = new ArrayList<>();
         int actualValue = mainExpr.getValue();
@@ -129,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         for(int i=1; i<solViews.size(); i++){
             int fakeValue;
             do {
-                fakeValue = randInt(0, 10); //generate random value to add/subtract
+                fakeValue = randInt(0, 10); //generate random value to determine whether to add/subtract
                 if (getRandomBoolean())
                     fakeValue = actualValue + fakeValue;
                 else
@@ -138,14 +136,26 @@ public class MainActivity extends AppCompatActivity {
             values.add(fakeValue);
         }
 
-        Collections.shuffle(values);
+        Collections.shuffle(values);    //randomize list containing actual value and fake values
 
+        //update solution views with randomized list of values
         for(int i=0; i<solViews.size(); i++){
             TextView view = solViews.get(i);
             int valueToSet = values.get(i);
 
             view.setText(String.valueOf(valueToSet));
         }
+    }
+
+    private int randInt(int min, int max) {
+        Random rand = new Random();
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+
+        return randomNum;
+    }
+
+    private boolean getRandomBoolean() {
+        return Math.random() < 0.5;
     }
 
 }
