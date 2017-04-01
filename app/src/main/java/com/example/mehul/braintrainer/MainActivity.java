@@ -3,6 +3,7 @@ package com.example.mehul.braintrainer;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -16,21 +17,15 @@ public class MainActivity extends AppCompatActivity {
 
     int correct = 0;
     int attempts = 0;
+    int solutionValue;
+    CountDownTimer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        updateScoreView(correct, attempts);
-
-        TextView exprView = (TextView) findViewById(R.id.exprView);
-        Expression expr = getRandomExpression();
-        exprView.setText(expr.getExprString());
-
-        populateSolutionViews(expr, getSolutionViews());
-
-        CountDownTimer timer = new CountDownTimer(5000, 1000){
+        timer = new CountDownTimer(10000, 1000){
             TextView timerView = (TextView) findViewById(R.id.timerView);
 
             public void onTick(long millisUntilFinished) {
@@ -39,11 +34,44 @@ public class MainActivity extends AppCompatActivity {
 
             public void onFinish() {
                 timerView.setText("0");
+                attempts++;
+                updateState();
             }
 
         };
 
+        updateState();
+    }
+
+    private void updateState(){
+        updateScoreView(correct, attempts);
+
+        TextView exprView = (TextView) findViewById(R.id.exprView);
+        Expression expr = getRandomExpression();
+        exprView.setText(expr.getExprString());
+        solutionValue = expr.getValue();
+
+        populateSolutionViews(expr, getSolutionViews());
         timer.start();
+    }
+
+    public void onSolutionAttempt(View v){
+        TextView view = (TextView) v;
+        int clickedAnswer = Integer.parseInt(view.getText().toString());
+        boolean isCorrect = clickedAnswer == solutionValue ? true : false;
+
+        TextView statusView = (TextView) findViewById(R.id.statusView);
+        if(isCorrect){
+            statusView.setText(R.string.correct);
+            correct++;
+        } else {
+            statusView.setText(R.string.wrong);
+        }
+
+        attempts++;
+
+        timer.cancel();
+        updateState();
     }
 
     private void updateScoreView(int correct, int attempts){
