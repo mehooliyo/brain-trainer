@@ -22,27 +22,27 @@
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="36sp"
+                android:background="@android:color/holo_orange_dark"
                 android:textAlignment="center"
-                android:background="@android:color/holo_orange_dark"/>
+                android:textSize="36sp" />
 
             <TextView
                 android:id="@+id/exprView"
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:textSize="36sp"
+                android:background="@android:color/darker_gray"
                 android:textAlignment="center"
-                android:background="@android:color/darker_gray"/>
+                android:textSize="36sp" />
 
             <TextView
                 android:id="@+id/scoreView"
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="24sp"
+                android:background="@android:color/holo_orange_dark"
                 android:textAlignment="center"
-                android:background="@android:color/holo_orange_dark"/>
+                android:textSize="24sp" />
 
         </LinearLayout>
 
@@ -63,7 +63,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_green_light"/>
+                    android:background="@android:color/holo_green_light" />
 
                 <TextView
                     android:id="@+id/solView2"
@@ -71,7 +71,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_red_light"/>
+                    android:background="@android:color/holo_red_light" />
             </TableRow>
 
             <TableRow
@@ -85,7 +85,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_orange_light"/>
+                    android:background="@android:color/holo_orange_light" />
 
                 <TextView
                     android:id="@+id/solView4"
@@ -93,7 +93,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_blue_dark"/>
+                    android:background="@android:color/holo_blue_dark" />
             </TableRow>
 
         </TableLayout>
@@ -102,7 +102,7 @@
             android:id="@+id/statusView"
             android:layout_width="match_parent"
             android:layout_height="50sp"
-            android:background="@android:color/darker_gray"/>
+            android:background="@android:color/darker_gray" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
