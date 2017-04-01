@@ -63,7 +63,9 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_green_light" />
+                    android:background="@android:color/holo_green_light"
+                    android:textSize="48sp"
+                    android:gravity="center"/>
 
                 <TextView
                     android:id="@+id/solView2"
@@ -71,7 +73,9 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_red_light" />
+                    android:background="@android:color/holo_red_light"
+                    android:textSize="48sp"
+                    android:gravity="center"/>
             </TableRow>
 
             <TableRow
@@ -85,7 +89,9 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_orange_light" />
+                    android:background="@android:color/holo_orange_light"
+                    android:textSize="48sp"
+                    android:gravity="center"/>
 
                 <TextView
                     android:id="@+id/solView4"
@@ -93,7 +99,9 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_blue_dark" />
+                    android:background="@android:color/holo_blue_dark"
+                    android:textSize="48sp"
+                    android:gravity="center"/>
             </TableRow>
 
         </TableLayout>
