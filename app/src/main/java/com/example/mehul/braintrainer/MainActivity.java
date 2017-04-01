@@ -23,10 +23,18 @@ public class MainActivity extends AppCompatActivity {
     private int solutionValue;
     private CountDownTimer timer;
 
+    private TextView exprView;
+    private TextView statusView;
+    private TextView scoreView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        exprView = (TextView) findViewById(R.id.exprView);
+        statusView = (TextView) findViewById(R.id.statusView);
+        scoreView = (TextView) findViewById(R.id.scoreView);
 
         timer = new CountDownTimer(TIMER_LENGTH, TIMER_INTERVAL){
             TextView timerView = (TextView) findViewById(R.id.timerView);
@@ -47,14 +55,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateState(){
-        updateScoreView(correct, attempts);
+        //update score with current attempts
+        scoreView.setText(correct + "/" + attempts);
 
-        TextView exprView = (TextView) findViewById(R.id.exprView);
+        //generate new expression and update expression view
         Expression expr = getRandomExpression();
         exprView.setText(expr.getExprString());
         solutionValue = expr.getValue();
 
+        //generate new random solutions
         populateSolutionViews(expr, getSolutionViews());
+        
         timer.start();
     }
 
@@ -63,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
         int clickedAnswer = Integer.parseInt(view.getText().toString());
         boolean isCorrect = clickedAnswer == solutionValue;
 
-        TextView statusView = (TextView) findViewById(R.id.statusView);
         if(isCorrect){
             statusView.setText(R.string.correct);
             correct++;
@@ -77,23 +87,18 @@ public class MainActivity extends AppCompatActivity {
         updateState();
     }
 
-    private void updateScoreView(int correct, int attempts){
-        TextView scoreView = (TextView) findViewById(R.id.scoreView);
-        scoreView.setText(correct + "/" + attempts);
-    }
-
-    public int randInt(int min, int max) {
+    private int randInt(int min, int max) {
         Random rand = new Random();
         int randomNum = rand.nextInt((max - min) + 1) + min;
 
         return randomNum;
     }
 
-    public static boolean getRandomBoolean() {
+    private boolean getRandomBoolean() {
         return Math.random() < 0.5;
     }
 
-    public Expression getRandomExpression(){
+    private Expression getRandomExpression(){
         int leftOperand = randInt(0,100);
         int rightOperand = randInt(0, 100);
         String operator = "+";
