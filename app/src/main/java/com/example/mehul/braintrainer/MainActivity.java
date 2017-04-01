@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     public void onSolutionAttempt(View v){
         TextView view = (TextView) v;
         int clickedAnswer = Integer.parseInt(view.getText().toString());
-        boolean isCorrect = clickedAnswer == solutionValue ? true : false;
+        boolean isCorrect = clickedAnswer == solutionValue;
 
         TextView statusView = (TextView) findViewById(R.id.statusView);
         if(isCorrect){
