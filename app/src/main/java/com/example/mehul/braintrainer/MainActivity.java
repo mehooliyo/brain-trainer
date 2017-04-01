@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int TIMER_LENGTH = 10000;
     private static final int TIMER_INTERVAL = 1000;
 
-    private int correct = 0;
-    private int attempts = 0;
+    private int correct;
+    private int attempts;
     private int solutionValue;
     private CountDownTimer timer;
 
@@ -28,14 +28,19 @@ public class MainActivity extends AppCompatActivity {
     private TextView scoreView;
 
     @Override
+    //initialize score, views, and timer
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        correct = 0;
+        attempts = 0;
         exprView = (TextView) findViewById(R.id.exprView);
         statusView = (TextView) findViewById(R.id.statusView);
         scoreView = (TextView) findViewById(R.id.scoreView);
 
+        //timer object to display current time per interval
+        //updates state on finish (e.g. there was no user input)
         timer = new CountDownTimer(TIMER_LENGTH, TIMER_INTERVAL){
             TextView timerView = (TextView) findViewById(R.id.timerView);
 
@@ -89,8 +94,6 @@ public class MainActivity extends AppCompatActivity {
         timer.cancel();
         updateState();
     }
-
-
 
     //Get an expression where the operands are random ints
     private Expression getRandomExpression(){
