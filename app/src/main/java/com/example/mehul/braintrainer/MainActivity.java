@@ -15,21 +15,24 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    int correct = 0;
-    int attempts = 0;
-    int solutionValue;
-    CountDownTimer timer;
+    private static final int TIMER_LENGTH = 10000;
+    private static final int TIMER_INTERVAL = 1000;
+
+    private int correct = 0;
+    private int attempts = 0;
+    private int solutionValue;
+    private CountDownTimer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        timer = new CountDownTimer(10000, 1000){
+        timer = new CountDownTimer(TIMER_LENGTH, TIMER_INTERVAL){
             TextView timerView = (TextView) findViewById(R.id.timerView);
 
             public void onTick(long millisUntilFinished) {
-                timerView.setText(String.valueOf(millisUntilFinished / 1000));
+                timerView.setText(String.valueOf(millisUntilFinished / TIMER_INTERVAL));
             }
 
             public void onFinish() {
