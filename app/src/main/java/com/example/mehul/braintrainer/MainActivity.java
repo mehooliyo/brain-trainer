@@ -8,6 +8,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         TextView exprView = (TextView) findViewById(R.id.exprView);
         Expression expr = getRandomExpression();
         exprView.setText(expr.getExprString());
+
+        populateSolutionViews(expr, getSolutionViews());
 
         CountDownTimer timer = new CountDownTimer(5000, 1000){
             TextView timerView = (TextView) findViewById(R.id.timerView);
@@ -45,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
         return randomNum;
     }
 
+    public static boolean getRandomBoolean() {
+        return Math.random() < 0.5;
+    }
+
     public Expression getRandomExpression(){
         int leftOperand = randInt(0,100);
         int rightOperand = randInt(0, 100);
@@ -67,4 +74,32 @@ public class MainActivity extends AppCompatActivity {
 
         return viewList;
     }
+
+    private void populateSolutionViews(Expression mainExpr, List<TextView> solViews){
+        List<Integer> values = new ArrayList<>();
+        int actualValue = mainExpr.getValue();
+        values.add(actualValue);
+
+        for(int i=1; i<solViews.size(); i++){
+            int fakeValue;
+            do {
+                fakeValue = randInt(0, 10); //generate random value to add/subtract
+                if (getRandomBoolean())
+                    fakeValue = actualValue + fakeValue;
+                else
+                    fakeValue = actualValue - fakeValue;
+            } while (fakeValue == actualValue); //redo calculation to prevent the actual value showing twice
+            values.add(fakeValue);
+        }
+
+        Collections.shuffle(values);
+
+        for(int i=0; i<solViews.size(); i++){
+            TextView view = solViews.get(i);
+            int valueToSet = values.get(i);
+
+            view.setText(String.valueOf(valueToSet));
+        }
+    }
+
 }
