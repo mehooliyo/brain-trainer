@@ -22,6 +22,8 @@
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="36sp"
+                android:textAlignment="center"
                 android:background="@android:color/holo_orange_dark"/>
 
             <TextView
