@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         for(int i=1; i<solViews.size(); i++){
             int fakeValue;
             do {
-                fakeValue = randInt(0, 10); //generate random value to determine whether to add/subtract
+                fakeValue = randInt(5, 25); //generate random value to determine whether to add/subtract
                 if (getRandomBoolean())
                     fakeValue = actualValue + fakeValue;
                 else
