@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
                 goView.setVisibility(View.VISIBLE);
                 solTableLayout.setVisibility(View.GONE);
                 goView.setText(R.string.end_game);
+                exprView.setText("");
+                statusView.setText("");
             }
 
         };
