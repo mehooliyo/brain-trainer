@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
     private int solutionValue;
     private CountDownTimer timer;
 
+    private TextView goView;
+    private TableLayout solTableLayout;
+
     private TextView exprView;
     private TextView statusView;
     private TextView scoreView;
@@ -33,8 +36,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        correct = 0;
-        attempts = 0;
+        solTableLayout = (TableLayout) findViewById(R.id.solTableLayout);
+        goView = (TextView) findViewById(R.id.goView);
+
         exprView = (TextView) findViewById(R.id.exprView);
         statusView = (TextView) findViewById(R.id.statusView);
         scoreView = (TextView) findViewById(R.id.scoreView);
@@ -50,9 +54,22 @@ public class MainActivity extends AppCompatActivity {
 
             public void onFinish() {
                 timerView.setText("0");
+
+                //update view on finish
+                goView.setVisibility(View.VISIBLE);
+                solTableLayout.setVisibility(View.GONE);
+                goView.setText(R.string.end_game);
             }
 
         };
+    }
+
+    public void onStart(View v){
+        goView.setVisibility(View.GONE);
+        solTableLayout.setVisibility(View.VISIBLE);
+
+        correct = 0;
+        attempts = 0;
 
         updateState();
         timer.start();
@@ -104,9 +121,8 @@ public class MainActivity extends AppCompatActivity {
     private List<TextView> getSolutionViews(){
         List<TextView> viewList = new ArrayList<>();
 
-        TableLayout solTable = (TableLayout) findViewById(R.id.solTable);
-        for(int i=0; i < solTable.getChildCount(); i++) {
-            TableRow tableRow = (TableRow) solTable.getChildAt(i);
+        for(int i=0; i < solTableLayout.getChildCount(); i++) {
+            TableRow tableRow = (TableRow) solTableLayout.getChildAt(i);
             for (int j = 0; j < tableRow.getChildCount(); j++) {
                 TextView solView = (TextView) tableRow.getChildAt(j);
                 viewList.add(solView);

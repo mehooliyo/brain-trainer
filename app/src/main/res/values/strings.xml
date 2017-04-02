@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Brain Trainer</string>
+    <string name="start">Tap to\nStart!</string>
+    <string name="end_game">Game Ended! Tap to Play Again</string>
     <string name="correct">CORRECT!</string>
     <string name="wrong">WRONG!</string>
 </resources>

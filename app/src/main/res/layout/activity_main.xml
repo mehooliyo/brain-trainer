@@ -46,11 +46,25 @@
 
         </LinearLayout>
 
-        <TableLayout
-            android:id="@+id/solTable"
+        <TextView
+            android:id="@+id/goView"
             android:layout_width="match_parent"
             android:layout_height="200sp"
-            android:layout_margin="10sp">
+            android:layout_margin="10sp"
+            android:background="@android:color/holo_green_light"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="onStart"
+            android:text="@string/start"
+            android:textSize="50sp"
+            android:visibility="visible" />
+
+        <TableLayout
+            android:id="@+id/solTableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="200sp"
+            android:layout_margin="10sp"
+            android:visibility="gone">
 
             <TableRow
                 android:layout_width="match_parent"
