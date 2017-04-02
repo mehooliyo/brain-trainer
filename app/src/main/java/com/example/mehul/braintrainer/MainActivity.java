@@ -15,7 +15,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int TIMER_LENGTH = 10000;
+    private static final int TIMER_LENGTH = 25000;
     private static final int TIMER_INTERVAL = 1000;
 
     private int correct;
@@ -50,13 +50,12 @@ public class MainActivity extends AppCompatActivity {
 
             public void onFinish() {
                 timerView.setText("0");
-                attempts++;
-                updateState();
             }
 
         };
 
         updateState();
+        timer.start();
     }
 
     //Updates UI based on attempts and correct answers, generates a new expression, and restarts
@@ -71,8 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
         //generate new random solutions
         populateSolutionViews(expr, getSolutionViews());
-
-        timer.start();
     }
 
     //Handler for solution attempt. Determines if answer was correct, updates the view and
@@ -91,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
 
         attempts++;
 
-        timer.cancel();
         updateState();
     }
 
